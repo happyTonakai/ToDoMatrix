@@ -1,0 +1,62 @@
+name: TodoMatrix
+options:
+  bundleIdPrefix: com.todomatrix
+  deploymentTarget:
+    macOS: "15.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+
+targets:
+  TodoMatrix:
+    type: application
+    platform: macOS
+    sources:
+      - Sources/TodoMatrix
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.todomatrix.app
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
+        COMBINE_HIDPI_IMAGES: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_PREVIEWS: YES
+    entitlements:
+      path: Sources/TodoMatrix/TodoMatrix.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+
+  TaskTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests/TaskTests
+    dependencies:
+      - target: TodoMatrix
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.todomatrix.TaskTests
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  TodoMatrix:
+    build:
+      targets:
+        TodoMatrix: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - TaskTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
