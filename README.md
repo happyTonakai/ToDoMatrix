@@ -1,6 +1,12 @@
+<div align="center">
+
 # TodoMatrix
 
-macOS 上的艾森豪威尔矩阵任务管理应用。
+![TodoMatrix Icon](Sources/TodoMatrix/Assets.xcassets/AppIcon.appiconset/icon_256x256.png)
+
+macOS 上的艾森豪威尔矩阵任务管理应用
+
+</div>
 
 ## 功能
 
